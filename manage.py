@@ -15,4 +15,4 @@ if __name__ == '__main__':
     execute_from_command_line(sys.argv)
 
 # http://getbootstrap.com/docs/4.1/examples/
-#7:20
+# virtualenv venv --python=python3
