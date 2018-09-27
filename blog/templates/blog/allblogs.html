@@ -1,35 +1,24 @@
+
 <!doctype html>
 <html lang="en">
   <head>
-    {% load staticfiles %}
+  	{% load staticfiles %}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Keith Lashley</title>
+    <title>Keith's Blog</title>
 
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<style>
-.o {
-  border-radius: 50%;
-}
-
-.y {
-  color: yellow;
-}
-
-.card{
-    height: 370px;
-}
-</style>
   </head>
 
   <body>
 
-    <header>
+   <header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		  <a class="navbar-brand" href="{% url 'home' %}">Keith Lashley</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,44 +29,30 @@
 		      <a class="nav-item nav-link" href="{% static 'Keith_Developer.pdf' %}">Resume</a>
 		      <a class="nav-item nav-link" href="https://www.linkedin.com/in/lashleykeith/">LinkedIn</a>
 		      <a class="nav-item nav-link" href="https://github.com/lashleykeith">Github</a>
-		      <a class="nav-item nav-link" href="{% url 'blog/allblogs' %}">Blog</a>
+		      <a class="nav-item nav-link active" href="{% url 'blog/allblogs' %}">Blog</a>  
 		    </div>
 		  </div>
 		</nav>
     </header>
 
     <main role="main">
+	    <div class="container">    	
+	     <h1 class="text-center pt-3">Welcome to Keith's Blog</h1>
+	     <br />
+	     <br />
+	     <h2>Latest Posts</h2>
+	     <hr/>
 
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Hi, I'm Keith</h1>
-          <p class="lead text-muted">My name is Keith Lashley and I make web applications. &nbsp;&nbsp; How may I help you?</p>
-          <p>
-            <a href="mailto:lashleykeith@gmail.com" class="btn btn-primary my-2">Email Me</a>
-          </p>
-          <img class="o" src="{% static 'photo.jpg' %}" height=300  />
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          
-          <div class="row">
-            {% for job in jobs.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="{{ job.image.url  }}"  />
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
+	     {% for blog in blogs.all %}
+	   <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+	     {{ blog.pub_date_pretty }}
+	     <br />
+	     <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200 />
+	     <br/>
+	     <p>{{ blog.summary }}</p>
+	     {% endfor %}
+	    
+	    </div>
     </main>
 
     <footer class="text-muted">
